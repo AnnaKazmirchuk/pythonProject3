@@ -15,9 +15,16 @@ def writing_file(file_directory = "."):
                     line = file.read().split('\n')
                     # print(line)
                     data[files] = (len(line), line)
-        for number, lines in sorted(data.values()):
+        # pprint(data)
+        for numbers, lines in sorted(data.items(), key = lambda x:x[1][0]):
+            print(numbers, lines)
             with open('result.txt', 'a', encoding='utf-8') as file:
-                file.writelines("%s\n" % line for line in lines)
+                file.write(f'{numbers}\n')
+                file.write(f"{lines[0]}\n")
+                for string in lines[1]:
+                    file.write(f'{string}\n')
+
+
         return file
     else:
         print('Такой папки нет')
